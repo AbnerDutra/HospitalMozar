@@ -3,7 +3,7 @@ package model;
 public class Teste {
     private String dataTeste;
     private String cpfPaciente;
-    private String resultado; // "positivo" ou "negativo"
+    private String resultado;
 
     public Teste(String dataTeste, String cpfPaciente, String resultado) {
         this.dataTeste = dataTeste;

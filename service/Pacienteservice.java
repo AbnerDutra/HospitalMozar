@@ -39,7 +39,9 @@ public class Pacienteservice {
         }
         if (!encontrado) System.out.println("Nenhum paciente encontrado para essa cidade.");
     }
-
+public List<Paciente> getPacientes() {
+    return new ArrayList<>(pacientes.values());
+}
     public void alterarPaciente(String cpf, Scanner sc) {
         Paciente p = pacientes.get(cpf);
         if (p == null) {
@@ -61,5 +63,10 @@ public class Pacienteservice {
 
     public boolean existe(String cpf) {
         return pacientes.containsKey(cpf);
+    }
+
+    public Paciente buscarPorCpf(String cpf) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarPorCpf'");
     }
 }

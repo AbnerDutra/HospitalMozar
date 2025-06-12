@@ -1,3 +1,4 @@
+import model.FiltroPacientes;
 import model.Paciente;
 import service.Pacienteservice;
 import java.util.Scanner;
@@ -7,16 +8,15 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Pacienteservice pacienteService = new Pacienteservice();
         int opcao;
-
         do {
             System.out.println("\n=== MENU PACIENTES ===");
             System.out.println("1 - Inserir paciente");
             System.out.println("2 - Remover paciente");
             System.out.println("3 - Listar pacientes");
-            System.out.println("4 - Filtrar por cidade");
+            System.out.println("4 - Filtrar");
             System.out.println("5 - Alterar dados de paciente");
             System.out.println("0 - Sair");
-            System.out.print("Opçao: ");
+            System.out.print("Opcao: ");
             opcao = Integer.parseInt(sc.nextLine());
 
             switch (opcao) {
@@ -44,8 +44,7 @@ public class Main {
                     pacienteService.listarPacientes();
                     break;
                 case 4:
-                    System.out.print("Cidade: ");
-                    pacienteService.filtrarPorCidade(sc.nextLine());
+                    FiltroPacientes.filtrar(pacienteService.getPacientes(), sc);
                     break;
                 case 5:
                     System.out.print("CPF do paciente: ");
