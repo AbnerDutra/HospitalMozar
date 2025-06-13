@@ -80,12 +80,10 @@ public class Paciente {
     }
 
     public void setDataNasc(String novaDataNasc) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setDataNasc'");
     }
 
     public Object getDataNasc() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getDataNasc'");
     }
 }

@@ -66,7 +66,6 @@ public List<Paciente> getPacientes() {
     }
 
     public Paciente buscarPorCpf(String cpf) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'buscarPorCpf'");
     }
 }

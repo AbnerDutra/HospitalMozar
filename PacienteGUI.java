@@ -19,6 +19,9 @@ public class PacienteGUI extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new GridLayout(8, 1, 10, 10));
 
+        ImageIcon icon = new ImageIcon("logo.jfif");
+        setIconImage(icon.getImage());
+
         JButton btnInserir = new JButton("Inserir paciente");
         JButton btnRemover = new JButton("Remover paciente");
         JButton btnListar = new JButton("Listar pacientes");
