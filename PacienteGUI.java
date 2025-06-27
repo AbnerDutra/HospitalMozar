@@ -19,9 +19,7 @@ public class PacienteGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Criar painel principal com GridLayout e espaçamento entre botões
         JPanel painelBotoes = new JPanel(new GridLayout(8, 1, 10, 10));
-        // Adicionar borda para afastar dos cantos da janela
         painelBotoes.setBorder(new EmptyBorder(20, 20, 20, 20)); // top, left, bottom, right
 
         JButton btnInserir = new JButton("Inserir paciente");
@@ -33,6 +31,8 @@ public class PacienteGUI extends JFrame {
         JButton btnListarObitos = new JButton("Listar óbitos");
         JButton btnSair = new JButton("Sair");
 
+
+
         painelBotoes.add(btnInserir);
         painelBotoes.add(btnRemover);
         painelBotoes.add(btnListar);
@@ -42,13 +42,11 @@ public class PacienteGUI extends JFrame {
         painelBotoes.add(btnListarObitos);
         painelBotoes.add(btnSair);
 
-        // Adiciona o painel com os botões à janela
         setContentPane(painelBotoes);
 
         ImageIcon icon = new ImageIcon("logo.jfif");
         setIconImage(icon.getImage());
 
-        // Configurar listeners dos botões
         btnInserir.addActionListener(_ -> inserirPaciente());
         btnRemover.addActionListener(_ -> removerPaciente());
         btnListar.addActionListener(_ -> listarPacientes());
