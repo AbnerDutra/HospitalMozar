@@ -4,6 +4,7 @@ import service.Pacienteservice;
 import service.ObitoService;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,10 +18,11 @@ public class PacienteGUI extends JFrame {
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(8, 1, 10, 10));
 
-        ImageIcon icon = new ImageIcon("logo.jfif");
-        setIconImage(icon.getImage());
+        // Criar painel principal com GridLayout e espaçamento entre botões
+        JPanel painelBotoes = new JPanel(new GridLayout(8, 1, 10, 10));
+        // Adicionar borda para afastar dos cantos da janela
+        painelBotoes.setBorder(new EmptyBorder(20, 20, 20, 20)); // top, left, bottom, right
 
         JButton btnInserir = new JButton("Inserir paciente");
         JButton btnRemover = new JButton("Remover paciente");
@@ -31,15 +33,22 @@ public class PacienteGUI extends JFrame {
         JButton btnListarObitos = new JButton("Listar óbitos");
         JButton btnSair = new JButton("Sair");
 
-        add(btnInserir);
-        add(btnRemover);
-        add(btnListar);
-        add(btnFiltrar);
-        add(btnAlterar);
-        add(btnRegistrarObito);
-        add(btnListarObitos);
-        add(btnSair);
+        painelBotoes.add(btnInserir);
+        painelBotoes.add(btnRemover);
+        painelBotoes.add(btnListar);
+        painelBotoes.add(btnFiltrar);
+        painelBotoes.add(btnAlterar);
+        painelBotoes.add(btnRegistrarObito);
+        painelBotoes.add(btnListarObitos);
+        painelBotoes.add(btnSair);
 
+        // Adiciona o painel com os botões à janela
+        setContentPane(painelBotoes);
+
+        ImageIcon icon = new ImageIcon("logo.jfif");
+        setIconImage(icon.getImage());
+
+        // Configurar listeners dos botões
         btnInserir.addActionListener(_ -> inserirPaciente());
         btnRemover.addActionListener(_ -> removerPaciente());
         btnListar.addActionListener(_ -> listarPacientes());
@@ -179,18 +188,32 @@ public class PacienteGUI extends JFrame {
     }
 
     private void registrarObito() {
-        String cpf = JOptionPane.showInputDialog(this, "Digite o CPF do paciente falecido:");
-        String data = JOptionPane.showInputDialog(this, "Digite a data do óbito:");
+        String nomeobito = JOptionPane.showInputDialog(this, "Digite o nome do paciente falecido:");
+        String cpfPaciente = JOptionPane.showInputDialog(this, "Digite o CPF do paciente falecido:");
+        String dataObito = JOptionPane.showInputDialog(this, "Digite a data do óbito:");
 
-        Obito obito = new Obito(cpf, data);
+        Obito obito = new Obito(cpfPaciente, dataObito, nomeobito);
         obitoService.inserirObito(obito, pacienteService);
-        JOptionPane.showMessageDialog(this, "Óbito registrado (verifique console para mensagem de sucesso ou erro).");
+        JOptionPane.showMessageDialog(this, "Óbito registrado.");
     }
 
     private void listarObitos() {
+        List<Obito> lista = obitoService.getObitos();
 
-        obitoService.getObitos();
-        JOptionPane.showMessageDialog(this, "Veja a lista de óbitos no console.");
+        if (lista.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nenhum óbito registrado.");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (Obito o : lista) {
+            sb.append("Nome: ").append(o.getnomeobito()).append("\n");
+            sb.append("CPF: ").append(o.getCpfPaciente()).append("\n");
+            sb.append("Data do óbito: ").append(o.getDataObito()).append("\n");
+            sb.append("------------------------\n");
+        }
+
+        JOptionPane.showMessageDialog(this, sb.toString(), "Lista de Óbitos", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void main(String[] args) {
